@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="page">
 		个人页
 	</view>
 </template>
