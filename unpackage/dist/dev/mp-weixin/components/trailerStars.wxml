@@ -1,0 +1,1 @@
+<view class="movie-score-wapper"><image class="star-ico" src="../../static/icons/star-yellow.png"></image><image class="star-ico" src="../../static/icons/star-yellow.png"></image><image class="star-ico" src="../../static/icons/star-yellow.png"></image><image class="star-ico" src="../../static/icons/star-gray.png"></image><view class="movie-score">9.0</view></view>

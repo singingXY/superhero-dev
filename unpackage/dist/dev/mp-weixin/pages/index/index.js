@@ -142,32 +142,40 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var trailerStars = function trailerStars() {return __webpack_require__.e(/*! import() | components/trailerStars */ "components/trailerStars").then(__webpack_require__.bind(null, /*! ../../components/trailerStars.vue */ 37));};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
   data: function data() {
     return {
-      carouselList: [] };
+      carouselList: [],
+      hotSuperheroList: [] };
 
   },
   onLoad: function onLoad() {
@@ -183,8 +191,23 @@ var _default =
         }
       } });
 
+    //查询热门超英
+    uni.request({
+      url: _this.serverURL + '/index/movie/hot?type=superhero',
+      method: "POST",
+      success: function success(res) {
+        console.log(res.data);
+        if (res.data.status == 200) {
+          _this.hotSuperheroList = res.data.data;
+        }
+      } });
+
   },
-  methods: {} };exports.default = _default;
+  methods: {},
+
+
+  components: {
+    trailerStars: trailerStars } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
