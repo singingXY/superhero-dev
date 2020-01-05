@@ -89,6 +89,10 @@
 		onUnload() {
 			//页面卸载时清除动画数据
 			this.animation = {}
+			this.animationDataArr = [{},{},{},{},{}]
+		},
+		onPullDownRefresh() {
+			this.refresh();
 		},
         onLoad() {
 			var _this = this;
@@ -127,22 +131,39 @@
 					}
 				}
 			});
-			//查询猜你喜欢
-			uni.request({
-				url: _this.serverURL + '/index/guessULike', 
-				method:"POST",
-				success: (res) => {
-					console.log(res.data);
-					if(res.data.status == 200){
-						_this.guessULike = res.data.data;
-					}
-				}
-			});
+			this.refresh();
+			
         },
         methods: {
+			refresh(){
+				
+				var _this = this;
+				
+				uni.showLoading({
+					mask:true
+				})
+				uni.showNavigationBarLoading()
+				
+				//查询猜你喜欢
+				uni.request({
+					url: _this.serverURL + '/index/guessULike', 
+					method:"POST",
+					success: (res) => {
+						console.log(res.data);
+						if(res.data.status == 200){
+							_this.guessULike = res.data.data;
+						}
+					},
+					complete: () => {
+						uni.hideLoading()
+						uni.hideNavigationBarLoading()
+						uni.stopPullDownRefresh()
+					}
+				});
+			},
 			praiseMe(e){
 				var index = e.currentTarget.dataset.index;
-				console.log(index)
+				//console.log(index)
 				this.animation.translateY(-60).opacity(1).step({
 					duration: 400 //持续时间
 				})

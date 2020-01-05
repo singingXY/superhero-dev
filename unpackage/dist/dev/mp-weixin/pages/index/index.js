@@ -233,6 +233,10 @@ __webpack_require__.r(__webpack_exports__);
   onUnload: function onUnload() {
     //页面卸载时清除动画数据
     this.animation = {};
+    this.animationDataArr = [{}, {}, {}, {}, {}];
+  },
+  onPullDownRefresh: function onPullDownRefresh() {
+    this.refresh();
   },
   onLoad: function onLoad() {
     var _this = this;
@@ -271,22 +275,39 @@ __webpack_require__.r(__webpack_exports__);
         }
       } });
 
-    //查询猜你喜欢
-    uni.request({
-      url: _this.serverURL + '/index/guessULike',
-      method: "POST",
-      success: function success(res) {
-        console.log(res.data);
-        if (res.data.status == 200) {
-          _this.guessULike = res.data.data;
-        }
-      } });
+    this.refresh();
 
   },
   methods: {
+    refresh: function refresh() {
+
+      var _this = this;
+
+      uni.showLoading({
+        mask: true });
+
+      uni.showNavigationBarLoading();
+
+      //查询猜你喜欢
+      uni.request({
+        url: _this.serverURL + '/index/guessULike',
+        method: "POST",
+        success: function success(res) {
+          console.log(res.data);
+          if (res.data.status == 200) {
+            _this.guessULike = res.data.data;
+          }
+        },
+        complete: function complete() {
+          uni.hideLoading();
+          uni.hideNavigationBarLoading();
+          uni.stopPullDownRefresh();
+        } });
+
+    },
     praiseMe: function praiseMe(e) {
       var index = e.currentTarget.dataset.index;
-      console.log(index);
+      //console.log(index)
       this.animation.translateY(-60).opacity(1).step({
         duration: 400 //持续时间
       });
