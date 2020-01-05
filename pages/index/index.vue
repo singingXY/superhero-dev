@@ -6,7 +6,6 @@
         	</swiper-item>
         </swiper>
 		<!-- 轮播图 end -->
-		<!-- 热门超英 -->
 		<view class="page-block super-hot">
 			<view class="hot-title-wapper">
 				<image src="../../static/icons/hot.png" class="hot-ico"></image>
@@ -18,10 +17,38 @@
 				<view class="poster-wapper">
 					<image :src="superhero.cover" class="poster"></image>
 					<view class="movie-name">{{superhero.name}}</view>
-					<trailerStars></trailerStars>
+					<trailerStars
+					 :innerScore = "superhero.score"
+					 showNum=1
+					 ></trailerStars>
 				</view>
 			</view>
 		</scroll-view>
+		<!-- 热门超英 end-->
+		<view class="page-block super-hot">
+			<view class="hot-title-wapper">
+				<image src="../../static/icons/yugao.png" class="hot-ico"></image>
+				<view class="hot-title">热门预告</view>
+			</view>
+		</view>
+		<view class="hot-movie page-block">
+			<video
+			 class="hot-movie-single"
+			 v-for="(trailer,index) in hottrailerList.slice(0, 4)"
+			 :key="trailer.id"
+			 :src="trailer.trailer" 
+			 :poster="trailer.poster"
+			 controls></video>
+		</view>
+		<!-- 热门预告 end-->
+		
+		<view class="page-block super-hot">
+			<view class="hot-title-wapper">
+				<image src="../../static/icons/guess-u-like.png" class="hot-ico"></image>
+				<view class="hot-title">猜你喜欢</view>
+			</view>
+		</view>
+		<!-- 猜你喜欢 end-->
     </view>
 </template>
 
@@ -31,7 +58,8 @@
         data() {
             return {
                 carouselList: [],
-				hotSuperheroList:[]
+				hotSuperheroList:[],
+				hottrailerList:[]
             }
         },
         onLoad() {
@@ -55,6 +83,17 @@
 					console.log(res.data);
 					if(res.data.status == 200){
 						_this.hotSuperheroList = res.data.data;
+					}
+				}
+			});
+			//查询热门预告
+			uni.request({
+				url: _this.serverURL + '/index/movie/hot?type=trailer', 
+				method:"POST",
+				success: (res) => {
+					console.log(res.data);
+					if(res.data.status == 200){
+						_this.hottrailerList = res.data.data;
 					}
 				}
 			});
