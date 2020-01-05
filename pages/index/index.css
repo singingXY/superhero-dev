@@ -21,12 +21,7 @@
 	margin-left: 20upx;
 	font-weight: bold;
 }
-
-.hot{
-	width: 100%;
-	white-space: nowrap;
-}
-
+.hot{width: 100%;white-space: nowrap;}
 .single-poster{
 	display: inline-block;
 	margin-left: 20upx;
@@ -61,4 +56,43 @@
 	width: 350upx;
 	height: 220upx;
 	margin-top: 10upx;
+}
+
+/* 猜你喜欢 */
+.guess-u-like{display: flex;flex-direction: column;}
+.single-like-movie{
+	display: flex;flex-direction:row;padding: 30upx 20upx;
+	justify-content: space-between;
+}
+.like-movie{width: 180upx;height: 240upx;border-radius: 3%;}
+.movie-desc{width: 340upx;display: flex;flex-direction: column;}
+.movie-title{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	}
+.movie-info{
+	color: #808080;
+	font-size: 14px;
+}
+/* 点赞 */
+.movie-oper{
+	width: 140upx;
+	display: flex;flex-direction: column;
+	justify-content: center;
+	border-left: dashed 2px #dbdbdb;
+}
+.praise-ico{
+	width: 40upx;
+	height: 40upx;
+	align-self: center;
+}
+.praise-me{
+	font-size: 14px;
+	color: #feae2a;
+	align-self: center;
+}
+.animation-opacity{
+	font-weight: bold;
+	opacity: 0;
 }

@@ -174,15 +174,70 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
   data: function data() {
     return {
       carouselList: [],
-      hotSuperheroList: [] };
+      hotSuperheroList: [],
+      hottrailerList: [],
+      guessULike: [],
+      animationData: {},
+      animationDataArr: [{}, {}, {}, {}, {}] };
 
+  },
+  onUnload: function onUnload() {
+    //页面卸载时清除动画数据
+    this.animation = {};
   },
   onLoad: function onLoad() {
     var _this = this;
+    //创建一个临时动画对象
+    this.animation = uni.createAnimation();
     //请求轮播图数据
     uni.request({
       url: _this.serverURL + '/index/carousel/list',
@@ -205,9 +260,48 @@ __webpack_require__.r(__webpack_exports__);
         }
       } });
 
-  },
-  methods: {},
+    //查询热门预告
+    uni.request({
+      url: _this.serverURL + '/index/movie/hot?type=trailer',
+      method: "POST",
+      success: function success(res) {
+        console.log(res.data);
+        if (res.data.status == 200) {
+          _this.hottrailerList = res.data.data;
+        }
+      } });
 
+    //查询猜你喜欢
+    uni.request({
+      url: _this.serverURL + '/index/guessULike',
+      method: "POST",
+      success: function success(res) {
+        console.log(res.data);
+        if (res.data.status == 200) {
+          _this.guessULike = res.data.data;
+        }
+      } });
+
+  },
+  methods: {
+    praiseMe: function praiseMe(e) {
+      var index = e.currentTarget.dataset.index;
+      console.log(index);
+      this.animation.translateY(-60).opacity(1).step({
+        duration: 400 //持续时间
+      });
+      //导出动画数据到vue组件
+      this.animationData = this.animation;
+      this.animationDataArr[index] = this.animationData.export();
+      //还原动画
+      setTimeout(function () {
+        this.animation.translateY(0).opacity(0).step({
+          duration: 0 });
+
+        this.animationData = this.animation;
+        this.animationDataArr[index] = this.animationData.export();
+      }.bind(this), 500);
+    } },
 
   components: {
     trailerStars: trailerStars } };exports.default = _default;

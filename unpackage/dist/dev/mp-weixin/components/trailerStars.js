@@ -152,6 +152,7 @@ var _default =
     if (this.innerScore) {
       tempScore = this.innerScore;
     }
+    // 灰星数=5-黄星
     var yellowScore = parseInt(tempScore / 2);
     this.greyScore = 5 - yellowScore;
     this.yellowScore = yellowScore;

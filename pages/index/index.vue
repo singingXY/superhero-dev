@@ -48,6 +48,27 @@
 				<view class="hot-title">猜你喜欢</view>
 			</view>
 		</view>
+		<view class="page-block guess-u-like" v-for="(guess,index) in guessULike">
+			<view class="single-like-movie">
+				<image :src="guess.cover" class="like-movie"></image>
+				<view class="movie-desc">
+					<view class="movie-title">{{guess.name}}</view>
+					<trailerStars
+					 :innerScore = "guess.score"
+					 showNum=0
+					 ></trailerStars>
+					<view class="movie-info">{{guess.basicInfo}}</view>
+					<view class="movie-info">{{guess.releaseDate}}</view>
+				</view>
+				<view class="movie-oper" :data-index="index" @click="praiseMe">
+					<image src="../../static/icons/praise.png" class="praise-ico"></image>
+					<view class="praise-me">赞一下</view>
+					<view
+					 :animation="animationDataArr[index]"
+					 class="praise-me animation-opacity">+1</view>
+				</view>
+			</view>
+		</view>
 		<!-- 猜你喜欢 end-->
     </view>
 </template>
@@ -59,11 +80,20 @@
             return {
                 carouselList: [],
 				hotSuperheroList:[],
-				hottrailerList:[]
+				hottrailerList:[],
+				guessULike:[],
+				animationData:{},
+				animationDataArr:[{},{},{},{},{}]
             }
         },
+		onUnload() {
+			//页面卸载时清除动画数据
+			this.animation = {}
+		},
         onLoad() {
 			var _this = this;
+			//创建一个临时动画对象
+			this.animation = uni.createAnimation();
 			//请求轮播图数据
 			uni.request({
 				url: _this.serverURL + '/index/carousel/list', 
@@ -97,9 +127,37 @@
 					}
 				}
 			});
+			//查询猜你喜欢
+			uni.request({
+				url: _this.serverURL + '/index/guessULike', 
+				method:"POST",
+				success: (res) => {
+					console.log(res.data);
+					if(res.data.status == 200){
+						_this.guessULike = res.data.data;
+					}
+				}
+			});
         },
         methods: {
-
+			praiseMe(e){
+				var index = e.currentTarget.dataset.index;
+				console.log(index)
+				this.animation.translateY(-60).opacity(1).step({
+					duration: 400 //持续时间
+				})
+				//导出动画数据到vue组件
+				this.animationData = this.animation
+				this.animationDataArr[index] = this.animationData.export()
+				//还原动画
+				setTimeout(function(){
+					this.animation.translateY(0).opacity(0).step({
+						duration: 0
+					})
+					this.animationData = this.animation
+					this.animationDataArr[index] = this.animationData.export()
+				}.bind(this),500)
+			}
         },
 		components:{
 			trailerStars
