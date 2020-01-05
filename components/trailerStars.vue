@@ -3,12 +3,12 @@
 		<image
 		 v-for="yellow in yellowScore"
 		 :key="'yellow'+yellow"
-		 src="../../static/icons/star-yellow.png" 
+		 src="/static/icons/star-yellow.png" 
 		 class="star-ico"></image>
 		<image
 		 v-for="grey in greyScore"
 		 :key="'grey'+grey"
-		 src="../../static/icons/star-gray.png" 
+		 src="/static/icons/star-gray.png" 
 		 class="star-ico"></image>
 		 <view class="movie-score" v-if="showNum == 1">
 		 {{ innerScore }}

@@ -9,7 +9,7 @@
 		<view class="page-block super-hot">
 			<view class="hot-title-wapper">
 				<image src="../../static/icons/hot.png" class="hot-ico"></image>
-				<view class="hot-title">热门超英</view>
+				<view class="hot-title">热门影片</view>
 			</view>
 		</view>
 		<scroll-view scroll-x="true" class="page-block hot">
@@ -48,7 +48,7 @@
 				<view class="hot-title">猜你喜欢</view>
 			</view>
 		</view>
-		<view class="page-block guess-u-like" v-for="(guess,index) in guessULike">
+		<view class="page-block guess-u-like" v-for="(guess,index) in guessULike" :key="guess.id">
 			<view class="single-like-movie">
 				<image :src="guess.cover" class="like-movie"></image>
 				<view class="movie-desc">
