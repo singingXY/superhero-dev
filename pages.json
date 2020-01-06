@@ -11,7 +11,9 @@
 		}
 	    ,{
             "path" : "pages/search/search",
-            "style" : {}
+            "style" : {
+				"navigationBarTitleText": "搜索预告片"
+			}
         }
         ,{
             "path" : "pages/me/me",
@@ -20,7 +22,7 @@
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "超英预告",
+		"navigationBarTitleText": "影片预告",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
