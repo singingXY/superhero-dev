@@ -155,6 +155,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -218,9 +222,7 @@ var _default =
         success: function success(res) {
           if (res.data.status == 200) {
             var tempList = res.data.data.rows;
-            console.log(_this.trailerList);
             _this.trailerList = _this.trailerList.concat(tempList);
-            console.log(_this.trailerList);
             _this.totalPages = res.data.data.total; //总页数
             _this.page = page;
           }
@@ -238,6 +240,12 @@ var _default =
       this.keywords = value;
       this.trailerList = [];
       this.pagedTrailerList(value, 1, 15);
+    },
+    showTrailer: function showTrailer(e) {
+      var trailerId = e.currentTarget.dataset.trailerid;
+      uni.navigateTo({
+        url: "../movie/movie?trailerId=" + trailerId });
+
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
