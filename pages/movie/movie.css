@@ -47,3 +47,8 @@
 	line-height: 60upx;
 }
 .prise-counts{line-height: 44upx;}
+
+/* 剧情介绍 */
+.plots-block{background-color: #f7f4f9;padding: 20upx 40upx;}
+.plots-title{color: #A9A9A9;font-size: 14px;}
+.plots-desc{margin-top: 10upx;font-size: 16px;}
