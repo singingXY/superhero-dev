@@ -77,7 +77,7 @@
 				})
 				uni.showNavigationBarLoading()
 				
-				//查询猜你喜欢
+				//搜索关键词
 				uni.request({
 					url: _this.serverURL
 						+ '/search/list?keywords=' + keywords
