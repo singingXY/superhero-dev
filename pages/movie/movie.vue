@@ -98,6 +98,10 @@
 		onLoad(params) {
 			var _this = this;
 			var trailerId = params.trailerId
+			uni.setNavigationBarColor({
+				frontColor:"#ffffff",
+				backgroundColor:"#000000"
+			})
 			//请求影片详情
 			uni.request({
 				url: _this.serverURL + '/search/trailer/'+ trailerId, 
