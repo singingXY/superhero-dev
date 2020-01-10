@@ -51,4 +51,15 @@
 /* 剧情介绍 */
 .plots-block{background-color: #f7f4f9;padding: 20upx 40upx;}
 .plots-title{color: #A9A9A9;font-size: 14px;}
-.plots-desc{margin-top: 10upx;font-size: 16px;}
+.plots-desc{margin-top: 10upx;font-size: 16px;line-height: 1.8;}
+
+/* 剧照 */
+.scroll-block{ background-color: #f7f4f9;padding: 20upx 40upx;}
+.scroll-list{ width: 100%;white-space: nowrap;margin-top: 20upx;}
+.plot-images{width: 220upx;height: 320upx;margin-right: 10upx;}
+/* 演职人员 */
+.actor-wapper{display:inline-block;}
+.single-actor{width: 170upx;height: 240upx;margin-right: 10upx;}
+.actor-name,.actor-role{width: 170upx;text-align: center;}
+.actor-name{font-size: 15px;}
+.actor-role{font-size: 13px;color: #A9A9A9;}
