@@ -3,10 +3,10 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-                "app-plus": {
-                    "titleNView": false //禁用原生导航栏
-                },
-				"enablePullDownRefresh": true
+					"app-plus": {
+						"titleNView": false //禁用原生导航栏
+					},
+					"enablePullDownRefresh": true
 				}
 		}
 	    ,{
@@ -21,7 +21,13 @@
         }
         ,{
             "path" : "pages/movie/movie",
-            "style" : {}
+			"style": {
+					"app-plus": {
+						"titleNView":{
+							"type":"transparent"
+						}
+					}
+				}
         }
     ],
 	"globalStyle": {
