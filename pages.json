@@ -45,6 +45,10 @@
             "path" : "pages/cover/cover",
             "style" : {}
         }
+        ,{
+            "path" : "pages/registLogin/registLogin",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
