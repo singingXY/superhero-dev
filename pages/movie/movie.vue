@@ -63,7 +63,7 @@
 					 :src="actor.photo" class="single-actor"
 					 mode="aspectFill"></image>
 					 <view class="actor-name">{{actor.name}}</view>
-					 <view class="actor-role">{{actor.actName}}</view>
+					 <view class="actor-role">饰 {{actor.actName}}</view>
 				</view>
 			</scroll-view>
 		</view>
@@ -75,7 +75,9 @@
 				 v-for="(img,index) in plotPicsArray"
 				 :key="index"
 				 :src="img" class="plot-images"
-				 mode="aspectFill"></image>
+				 mode="aspectFill"
+				 @click="lookMe"
+				 :data-imgIndex="index"></image>
 			</scroll-view>
 		</view>
 		<!-- 剧照 end -->
@@ -135,7 +137,14 @@
 			});
 		},
 		methods: {
-			
+			lookMe(e){
+				var _this = this;
+				var imgIndex = e.currentTarget.dataset.imgindex 
+				uni.previewImage({
+					current:_this.plotPicsArray[imgIndex],
+					urls:_this.plotPicsArray
+				})
+			}
 		},
 		components:{
 			trailerStars,
