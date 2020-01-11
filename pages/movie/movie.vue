@@ -145,6 +145,13 @@
 				}
 			});
 		},
+		//此函数仅支持小程序端
+		onShareAppMessage(res) {
+			return{
+				title:this.trailerInfo.name,
+				path:'/pages/movie/movie?trailerId='+this.trailerInfo.id
+			}
+		},
 		methods: {
 			lookMe(e){
 				var _this = this;

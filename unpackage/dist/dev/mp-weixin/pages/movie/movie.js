@@ -280,6 +280,13 @@ __webpack_require__.r(__webpack_exports__);
       } });
 
   },
+  //此函数仅支持小程序端
+  onShareAppMessage: function onShareAppMessage(res) {
+    return {
+      title: this.trailerInfo.name,
+      path: '/pages/movie/movie?trailerId=' + this.trailerInfo.id };
+
+  },
   methods: {
     lookMe: function lookMe(e) {
       var _this = this;
