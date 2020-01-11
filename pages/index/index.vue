@@ -15,12 +15,15 @@
 		<scroll-view scroll-x="true" class="page-block hot">
 			<view class="single-poster" v-for="superhero in hotSuperheroList" :key="superhero.id">
 				<view class="poster-wapper">
+					
+					<navigator :url="'../movie/movie?trailerId='+superhero.id">
 					<image :src="superhero.cover" class="poster"></image>
 					<view class="movie-name">{{superhero.name}}</view>
 					<trailerStars
 					 :innerScore = "superhero.score"
 					 showNum=1
 					 ></trailerStars>
+					</navigator>
 				</view>
 			</view>
 		</scroll-view>
@@ -50,16 +53,20 @@
 		</view>
 		<view class="page-block guess-u-like" v-for="(guess,index) in guessULike" :key="guess.id">
 			<view class="single-like-movie">
-				<image :src="guess.cover" class="like-movie"></image>
-				<view class="movie-desc">
-					<view class="movie-title">{{guess.name}}</view>
-					<trailerStars
-					 :innerScore = "guess.score"
-					 showNum=0
-					 ></trailerStars>
-					<view class="movie-info">{{guess.basicInfo}}</view>
-					<view class="movie-info">{{guess.releaseDate}}</view>
-				</view>
+				<navigator :url="'../movie/movie?trailerId='+ guess.id">
+					<image :src="guess.cover" class="like-movie"></image>
+				</navigator>
+				<navigator :url="'../movie/movie?trailerId='+ guess.id">
+					<view class="movie-desc">
+						<view class="movie-title">{{guess.name}}</view>
+						<trailerStars
+						 :innerScore = "guess.score"
+						 showNum=0
+						 ></trailerStars>
+						<view class="movie-info">{{guess.basicInfo}}</view>
+						<view class="movie-info">{{guess.releaseDate}}</view>
+					</view>
+				</navigator>
 				<view class="movie-oper" :data-index="index" @click="praiseMe">
 					<image src="../../static/icons/praise.png" class="praise-ico"></image>
 					<view class="praise-me">赞一下</view>
