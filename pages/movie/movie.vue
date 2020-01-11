@@ -48,20 +48,26 @@
 			<view class="plots-title">演职人员</view>
 			<scroll-view scroll-x="true" class="scroll-list">
 				<view class="actor-wapper"
-					v-for="director in directorArray"
+					v-for="(director,dIndex) in directorArray"
 					:key="director.staffId">
 					<image
-					 :src="director.photo" class="single-actor"
-					 mode="aspectFill"></image>
+					 :src="director.photo"
+					 class="single-actor"
+					 mode="aspectFill"
+					 @click="lookStaffs"
+					 :data-staffIndex="dIndex"></image>
 					 <view class="actor-name">{{director.name}}</view>
 					 <view class="actor-role">{{director.actName}}</view>
 				</view>
 				<view class="actor-wapper"
-					 v-for="actor in actorArray"
+					 v-for="(actor,aIndex) in actorArray"
 					 :key="actor.staffId">
 					<image
-					 :src="actor.photo" class="single-actor"
-					 mode="aspectFill"></image>
+					 :src="actor.photo"
+					 class="single-actor"
+					 mode="aspectFill"
+					 @click="lookStaffs"
+					 :data-staffIndex="aIndex + directorArray.length"></image>
 					 <view class="actor-name">{{actor.name}}</view>
 					 <view class="actor-role">饰 {{actor.actName}}</view>
 				</view>
@@ -144,6 +150,22 @@
 					current:_this.plotPicsArray[imgIndex],
 					urls:_this.plotPicsArray
 				})
+			},
+			lookStaffs(e){
+				var _this = this;
+				var staffIndex = e.currentTarget.dataset.staffindex 
+				//拼接导演和演员数组
+				var newStaffArray = []
+				newStaffArray = newStaffArray.concat(_this.directorArray).concat(_this.actorArray)
+				var urls = []
+				for (let i = 0; i < newStaffArray.length; i++) {
+					urls.push(newStaffArray[i].photo)
+				}
+				uni.previewImage({
+					current:urls[staffIndex],
+					urls:urls
+				})
+				
 			}
 		},
 		components:{
