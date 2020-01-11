@@ -9,7 +9,10 @@
 		</view>
 		<!-- 视频播放 end-->
 		<view class="movie-info">
-			<image :src="trailerInfo.cover" class="cover"></image>
+			<navigator :url="'../cover/cover?cover='+trailerInfo.cover">
+				<image :src="trailerInfo.cover" class="cover"></image>
+			</navigator>
+			
 			<view class="movie-desc">
 				<view class="title">{{trailerInfo.name}}</view>
 				<view class="base-info">{{trailerInfo.basicInfo}}</view>
