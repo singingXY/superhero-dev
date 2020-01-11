@@ -2,6 +2,7 @@
 	<view class="page">
 		<view class="player">
 			<video
+			id="myTrailer"
 			 class="movie"
 			 :src="trailerInfo.trailer" 
 			 :poster="trailerInfo.poster"
@@ -106,6 +107,20 @@
 				actorArray:[]     //演员列表
 			}
 		},
+		//监听页面初次渲染完成
+		onReady() {
+			this.videoContext = uni.createVideoContext('myTrailer')
+		},
+		onHide() {
+			//页面隐藏时暂停播放
+			this.videoContext.pause()
+		},
+		onShow() {
+			//页面显示时播放
+			if(this.videoContext){
+				this.videoContext.play()
+			}
+		},
 		onLoad(params) {
 			var _this = this;
 			var trailerId = params.trailerId
@@ -150,6 +165,31 @@
 			return{
 				title:this.trailerInfo.name,
 				path:'/pages/movie/movie?trailerId='+this.trailerInfo.id
+			}
+		},
+		//监听原生标题栏按钮点击事件 
+		onNavigationBarButtonTap(e) {
+			var _this = this;
+			var index = e.index
+			var trailerInfo = _this.trailerInfo
+			var trailerId = trailerInfo.id
+			var trailerName = trailerInfo.name
+			var cover = trailerInfo.cover
+			var poster = trailerInfo.poster
+			
+			if(index == 0){
+				uni.share({
+					provider:"weixin",
+					scene: "WXSceneSession",
+					type: 0,
+					href:"http://localhost:8080/#/pages/movie/movie?trailerId="+trailerId,
+					title:"《"+trailerName+"》",
+					summary: "《"+trailerName+"》",
+					imageUrl:cover,
+					success: function (res) {
+						console.log("success:" + JSON.stringify(res));
+					}
+				})
 			}
 		},
 		methods: {
