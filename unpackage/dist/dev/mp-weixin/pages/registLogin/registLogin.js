@@ -133,7 +133,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
 //
 //
 //
@@ -169,9 +169,29 @@ var _default =
       var _this = this;
       var username = e.detail.value.username;
       var password = e.detail.value.password;
+      //发起注册/登录请求
+      uni.request({
+        url: _this.serverURL + "/user/registOrLogin",
+        method: "POST",
+        data: {
+          "username": username,
+          "password": password },
 
+        success: function success(res) {
+          if (res.data.status == 200) {
+            var userInfo = res.data.data;
+            console.log(userInfo);
+            //保存用户信息到全局的缓存中
+            uni.setStorageSync("globalUser", userInfo);
+            //tap页面跳转
+            uni.switchTab({
+              url: "../me/me" });
+
+          }
+        } });
 
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
