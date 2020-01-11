@@ -2,14 +2,14 @@
 	<view class="page page-fill">
 		<view class="header">
 			<view v-if="userIsLogin">
-				<image src="../../static/icons/user.png" class="face"></image>
+				<image :src="userInfo.faceImages" class="face"></image>
 			</view>
 			<view v-else>
 				<image src="../../static/icons/user.png" class="face"></image>
 			</view>
 			<view class="info-wapper" v-if="userIsLogin">
-				<view class="nickname">dfdsd</view>
-				<view class="nav-info">ID: ADFFdffgkn92urfnd</view>
+				<view class="nickname">{{userInfo.username}}</view>
+				<view class="nav-info">ID: {{userInfo.id}}</view>
 			</view>
 			<view class="info-wapper" v-else>
 				<navigator url="../registLogin/registLogin">
@@ -28,7 +28,18 @@
 	export default {
 		data() {
 			return {
-				userIsLogin:false
+				userIsLogin:false,
+				userInfo:{}
+			}
+		},
+		onShow() {
+			var _this = this;
+			var userInfo = uni.getStorageSync("globalUser")
+			if(userInfo){
+				_this.userIsLogin = true
+				_this.userInfo = userInfo
+			}else{
+				_this.userIsLogin = false
 			}
 		},
 		methods: {

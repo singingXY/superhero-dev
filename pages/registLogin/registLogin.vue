@@ -1,6 +1,6 @@
 <template>
 	<view class="body">
-		<form @submit="formSubmit" @reset="">
+		<form @submit="formSubmit">
 			<view class="face-wapper">
 				<image src="../../static/icons/user.png" class="face"></image>
 			</view>
@@ -34,8 +34,27 @@
 				var _this = this;
 				var username = e.detail.value.username;
 				var password = e.detail.value.password;
-				
-				
+				//发起注册/登录请求
+				uni.request({
+					url:_this.serverURL + "/user/registOrLogin",
+					method:"POST",
+					data:{
+						"username":username,
+						"password":password
+					},
+					success: (res) => {
+						if(res.data.status == 200){
+							var userInfo = res.data.data
+							console.log(userInfo)
+							//保存用户信息到全局的缓存中
+							uni.setStorageSync("globalUser",userInfo)
+							//tap页面跳转
+							uni.switchTab({
+								url:"../me/me"
+							})
+						}
+					}
+				})
 			}
 		}
 	}
