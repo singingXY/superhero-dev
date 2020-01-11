@@ -142,7 +142,10 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var trailerStars = function trailerStars() {return __webpack_require__.e(/*! import() | components/trailerStars */ "components/trailerStars").then(__webpack_require__.bind(null, /*! ../../components/trailerStars.vue */ 53));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var trailerStars = function trailerStars() {return __webpack_require__.e(/*! import() | components/trailerStars */ "components/trailerStars").then(__webpack_require__.bind(null, /*! ../../components/trailerStars.vue */ 55));};var _default =
+
+
+
 
 
 
@@ -245,6 +248,12 @@ __webpack_require__.r(__webpack_exports__);
   onPullDownRefresh: function onPullDownRefresh() {
     this.refresh();
   },
+  onHide: function onHide() {
+    //页面隐藏时暂停播放
+    if (this.videoContext) {
+      this.videoContext.pause();
+    }
+  },
   onLoad: function onLoad() {
     var _this = this;
     //创建一个临时动画对象
@@ -287,7 +296,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     refresh: function refresh() {
-
       var _this = this;
 
       uni.showLoading({
@@ -329,6 +337,22 @@ __webpack_require__.r(__webpack_exports__);
         this.animationData = this.animation;
         this.animationDataArr[index] = this.animationData.export();
       }.bind(this), 500);
+    },
+    meIsPlaying: function meIsPlaying(e) {
+      // 只同时播放一个视频
+      var _this = this;
+      var trailerId = '';
+      if (e) {
+        trailerId = e.currentTarget.dataset.playingindex;
+        _this.videoContext = uni.createVideoContext(trailerId);
+      }
+      var hottrailerList = _this.hottrailerList;
+      for (var i = 0; i < hottrailerList.length; i++) {
+        var tempId = hottrailerList[i].id;
+        if (tempId != trailerId) {
+          uni.createVideoContext(tempId).pause();
+        }
+      }
     } },
 
   components: {
