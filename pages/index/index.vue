@@ -36,6 +36,9 @@
 		</view>
 		<view class="hot-movie page-block">
 			<video
+			 :id="trailer.id"
+			 :data-playingIndex="trailer.id"
+			 @play="meIsPlaying"
 			 class="hot-movie-single"
 			 v-for="(trailer,index) in hottrailerList.slice(0, 4)"
 			 :key="trailer.id"
@@ -101,6 +104,12 @@
 		onPullDownRefresh() {
 			this.refresh();
 		},
+		onHide() {
+			//页面隐藏时暂停播放
+			if(this.videoContext){
+				this.videoContext.pause()
+			}
+		},
         onLoad() {
 			var _this = this;
 			//创建一个临时动画对象
@@ -143,7 +152,6 @@
         },
         methods: {
 			refresh(){
-				
 				var _this = this;
 				
 				uni.showLoading({
@@ -185,6 +193,22 @@
 					this.animationData = this.animation
 					this.animationDataArr[index] = this.animationData.export()
 				}.bind(this),500)
+			},
+			meIsPlaying(e){
+				// 只同时播放一个视频
+				var _this = this;
+				var trailerId = ''
+				if(e){
+					trailerId = e.currentTarget.dataset.playingindex;
+					_this.videoContext = uni.createVideoContext(trailerId)
+				}
+				var hottrailerList = _this.hottrailerList
+				for (let i = 0; i < hottrailerList.length; i++) {
+					var tempId = hottrailerList[i].id
+					if(tempId != trailerId){
+						uni.createVideoContext(tempId).pause()
+					}
+				}
 			}
         },
 		components:{
