@@ -32,9 +32,23 @@
 			</view>
 			<view class="third-icos-wapper">
 				<!-- #ifdef APP-PLUS -->
-					<image src="../../static/icons/weixin.png" class="third-ico"></image>
-					<image src="../../static/icons/QQ.png" class="third-ico" style="margin-left: 80upx;"></image>
-					<image src="../../static/icons/weibo.png" class="third-ico" style="margin-left: 80upx;"></image>
+					<image
+					 src="../../static/icons/weixin.png"
+					 class="third-ico"
+					 data-logintype="weixin"
+					 @click="appOAuthLogin"></image>
+					<image
+					 src="../../static/icons/QQ.png"
+					 class="third-ico"
+					 data-logintype="QQ"
+					 style="margin-left: 80upx;"
+					 @click="appOAuthLogin"></image>
+					<image
+					 src="../../static/icons/weibo.png"
+					 class="third-ico"
+					 data-logintype="weibo"
+					 style="margin-left: 80upx;"
+					 @click="appOAuthLogin"></image>
 				<!-- #endif -->
 				<!-- #ifdef MP-WEIXIN -->
 					<button
@@ -118,6 +132,24 @@
 								uni.switchTab({
 									url:"../me/me"
 								})
+							}
+						})
+					}
+				})
+			},
+			appOAuthLogin(e){
+				//获取用户登录类型
+				var logintype = e.currentTarget.dataset.logintype
+				//授权登录
+				uni.login({
+					provider:logintype,
+					success(loginRes) {
+						//授权登录成功后获取用户信息
+						uni.getUserInfo({
+							provider:logintype,
+							success(info) {
+								var userInfo = info.userInfo
+								//。。。获得信息，请求后端api。。。
 							}
 						})
 					}

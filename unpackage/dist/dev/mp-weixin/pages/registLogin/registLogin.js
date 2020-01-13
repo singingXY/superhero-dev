@@ -186,6 +186,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
   data: function data() {
     return {};
@@ -253,6 +267,24 @@ __webpack_require__.r(__webpack_exports__);
               uni.switchTab({
                 url: "../me/me" });
 
+            } });
+
+        } });
+
+    },
+    appOAuthLogin: function appOAuthLogin(e) {
+      //获取用户登录类型
+      var logintype = e.currentTarget.dataset.logintype;
+      //授权登录
+      uni.login({
+        provider: logintype,
+        success: function success(loginRes) {
+          //授权登录成功后获取用户信息
+          uni.getUserInfo({
+            provider: logintype,
+            success: function success(info) {
+              var userInfo = info.userInfo;
+              //。。。获得信息，请求后端api。。。
             } });
 
         } });
