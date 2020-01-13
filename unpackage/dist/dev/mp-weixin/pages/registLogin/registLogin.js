@@ -133,31 +133,59 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var aline = function aline() {return __webpack_require__.e(/*! import() | components/aline */ "components/aline").then(__webpack_require__.bind(null, /*! ../../components/aline.vue */ 78));};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
   data: function data() {
     return {};
@@ -180,7 +208,7 @@ var _default =
         success: function success(res) {
           if (res.data.status == 200) {
             var userInfo = res.data.data;
-            console.log(userInfo);
+            // console.log(userInfo)
             //保存用户信息到全局的缓存中
             uni.setStorageSync("globalUser", userInfo);
             //tap页面跳转
@@ -195,7 +223,44 @@ var _default =
           }
         } });
 
-    } } };exports.default = _default;
+    },
+    //微信小程序端微信登录
+    wxLogin: function wxLogin(e) {
+      var _this = this;
+      // 通过微信开放能力,获得微信用户基本信息
+      var userInfo = e.detail.userInfo;
+      // console.log(userInfo)
+      // 登录
+      uni.login({
+        provider: "weixin",
+        success: function success(loginResult) {
+          // console.log(loginResult)
+          // 获得微信登录code:授权码
+          var code = loginResult.code;
+          uni.request({
+            url: _this.serverURL + "/mpWXlogin/" + code,
+            method: "POST",
+            data: {
+              "avatarUrl": userInfo.avatarUrl,
+              "nickName": userInfo.nickName },
+
+            success: function success(userResult) {
+              console.log(userResult);
+              var userInfo = userResult.data.data;
+              //保存用户信息到全局的缓存中
+              uni.setStorageSync("globalUser", userInfo);
+              //tap页面跳转
+              uni.switchTab({
+                url: "../me/me" });
+
+            } });
+
+        } });
+
+    } },
+
+  components: {
+    aline: aline } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

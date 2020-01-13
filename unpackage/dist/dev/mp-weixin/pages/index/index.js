@@ -263,7 +263,6 @@ __webpack_require__.r(__webpack_exports__);
       url: _this.serverURL + '/index/carousel/list',
       method: "POST",
       success: function success(res) {
-        console.log(res.data);
         if (res.data.status == 200) {
           _this.carouselList = res.data.data;
         }
@@ -274,7 +273,6 @@ __webpack_require__.r(__webpack_exports__);
       url: _this.serverURL + '/index/movie/hot?type=superhero',
       method: "POST",
       success: function success(res) {
-        console.log(res.data);
         if (res.data.status == 200) {
           _this.hotSuperheroList = res.data.data;
         }
@@ -285,7 +283,6 @@ __webpack_require__.r(__webpack_exports__);
       url: _this.serverURL + '/index/movie/hot?type=trailer',
       method: "POST",
       success: function success(res) {
-        console.log(res.data);
         if (res.data.status == 200) {
           _this.hottrailerList = res.data.data;
         }
@@ -308,7 +305,6 @@ __webpack_require__.r(__webpack_exports__);
         url: _this.serverURL + '/index/guessULike',
         method: "POST",
         success: function success(res) {
-          console.log(res.data);
           if (res.data.status == 200) {
             _this.guessULike = res.data.data;
           }

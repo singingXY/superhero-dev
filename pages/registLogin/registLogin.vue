@@ -19,10 +19,38 @@
 			 style="margin-top: 60upx;width: 90%;"
 			 form-type="submit">登录 / 注册</button>
 		</form>
+		<!-- #ifndef H5 -->
+		<view class="third-wapper">
+			<view class="third-line">
+				<view class="singel-line">
+					<aline></aline>
+				</view>
+				<view class="third-words">第三方账号登录</view>
+				<view class="singel-line">
+					<aline></aline>
+				</view>
+			</view>
+			<view class="third-icos-wapper">
+				<!-- #ifdef APP-PLUS -->
+					<image src="../../static/icons/weixin.png" class="third-ico"></image>
+					<image src="../../static/icons/QQ.png" class="third-ico" style="margin-left: 80upx;"></image>
+					<image src="../../static/icons/weibo.png" class="third-ico" style="margin-left: 80upx;"></image>
+				<!-- #endif -->
+				<!-- #ifdef MP-WEIXIN -->
+					<button
+					 open-type='getUserInfo'
+					 @getuserinfo="wxLogin"
+					 class="third-btn-ico">
+					</button>
+				<!-- #endif -->
+			</view>
+		</view>
+		<!-- #endif -->
 	</view>
 </template>
 
 <script>
+	import aline from "../../components/aline.vue"
 	export default {
 		data() {
 			return {
@@ -45,7 +73,7 @@
 					success: (res) => {
 						if(res.data.status == 200){
 							var userInfo = res.data.data
-							console.log(userInfo)
+							// console.log(userInfo)
 							//保存用户信息到全局的缓存中
 							uni.setStorageSync("globalUser",userInfo)
 							//tap页面跳转
@@ -60,7 +88,44 @@
 						}
 					}
 				})
+			},
+			//微信小程序端微信登录
+			wxLogin(e){
+				var _this = this;
+				// 通过微信开放能力,获得微信用户基本信息
+				var userInfo = e.detail.userInfo;
+				// console.log(userInfo)
+				// 登录
+				uni.login({
+					provider:"weixin",
+					success(loginResult) {
+						// console.log(loginResult)
+						// 获得微信登录code:授权码
+						var code = loginResult.code;
+						uni.request({
+							url:_this.serverURL + "/mpWXlogin/" + code,
+							method:"POST",
+							data:{
+								"avatarUrl":userInfo.avatarUrl,
+								"nickName":userInfo.nickName
+							},
+							success: (userResult) => {
+								console.log(userResult)
+								var userInfo = userResult.data.data
+								//保存用户信息到全局的缓存中
+								uni.setStorageSync("globalUser",userInfo)
+								//tap页面跳转
+								uni.switchTab({
+									url:"../me/me"
+								})
+							}
+						})
+					}
+				})
 			}
+		},
+		components:{
+			aline
 		}
 	}
 </script>
