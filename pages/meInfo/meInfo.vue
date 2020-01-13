@@ -58,7 +58,7 @@
 			<view class="footer-words" @click="clearStorage">清理缓存</view>
 			<view class="footer-words"
 			 style="margin-top: 10upx;"
-			  @click="">退出登录</view>
+			  @click="logout">退出登录</view>
 		</view>
 	</view>
 </template>
@@ -84,6 +84,23 @@
 					duration:1500
 				})
 				
+			},
+			logout(){
+			var _this = this;
+				var globalUser = _this.getGlobalUser("globalUser");
+				uni.request({
+					url:_this.serverURL + "/user/logout?userId=" + globalUser.id,
+					method:"POST",
+					success: (res) => {
+						console.log(res.data)
+						if(res.data.status == 200){
+							uni.removeStorageSync("globalUser")
+							uni.switchTab({
+								url:"../me/me"
+							})
+						}
+					}
+				})
 			}
 		},
 		components:{

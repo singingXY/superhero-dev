@@ -219,6 +219,23 @@ __webpack_require__.r(__webpack_exports__);
         duration: 1500 });
 
 
+    },
+    logout: function logout() {
+      var _this = this;
+      var globalUser = _this.getGlobalUser("globalUser");
+      uni.request({
+        url: _this.serverURL + "/user/logout?userId=" + globalUser.id,
+        method: "POST",
+        success: function success(res) {
+          console.log(res.data);
+          if (res.data.status == 200) {
+            uni.removeStorageSync("globalUser");
+            uni.switchTab({
+              url: "../me/me" });
+
+          }
+        } });
+
     } },
 
   components: {
