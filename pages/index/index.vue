@@ -119,7 +119,6 @@
 				url: _this.serverURL + '/index/carousel/list', 
 				method:"POST",
 				success: (res) => {
-					console.log(res.data);
 					if(res.data.status == 200){
 						_this.carouselList = res.data.data;
 					}
@@ -130,7 +129,6 @@
 				url: _this.serverURL + '/index/movie/hot?type=superhero', 
 				method:"POST",
 				success: (res) => {
-					console.log(res.data);
 					if(res.data.status == 200){
 						_this.hotSuperheroList = res.data.data;
 					}
@@ -141,7 +139,6 @@
 				url: _this.serverURL + '/index/movie/hot?type=trailer', 
 				method:"POST",
 				success: (res) => {
-					console.log(res.data);
 					if(res.data.status == 200){
 						_this.hottrailerList = res.data.data;
 					}
@@ -164,7 +161,6 @@
 					url: _this.serverURL + '/index/guessULike', 
 					method:"POST",
 					success: (res) => {
-						console.log(res.data);
 						if(res.data.status == 200){
 							_this.guessULike = res.data.data;
 						}
