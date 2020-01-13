@@ -5,7 +5,7 @@
 			<view class="item-wapper face-line-upbottom">
 				<view class="info-words">头像</view>
 				<view class="right-wapper">
-					<image src="../../static/icons/user.png" class="face"></image>
+					<image :src="globalUser.faceImages" class="face"></image>
 					<view class="arrow-block">
 						<image src="../../static/icons/arrow.png" class="arrow-ico"></image>
 					</view>
@@ -16,7 +16,7 @@
 			<view class="item-wapper">
 				<view class="info-words">昵称</view>
 				<view class="right-wapper">
-					<view class="gray-fields">时代顶顶顶</view>
+					<view class="gray-fields">{{globalUser.nickname}}</view>
 					<view class="arrow-block">
 						<image src="../../static/icons/arrow.png" class="arrow-ico"></image>
 					</view>
@@ -27,7 +27,7 @@
 			<view class="item-wapper">
 				<view class="info-words">生日</view>
 				<view class="right-wapper">
-					<view class="gray-fields">1900-01-01</view>
+					<view class="gray-fields">{{globalUser.birthday}}</view>
 					<view class="arrow-block">
 						<image src="../../static/icons/arrow.png" class="arrow-ico"></image>
 					</view>
@@ -38,7 +38,15 @@
 			<view class="item-wapper">
 				<view class="info-words">性别</view>
 				<view class="right-wapper">
-					<view class="gray-fields">男</view>
+					<view class="gray-fields">
+						<view v-if="globalUser.sex == 1">
+							男
+						</view>
+						<view v-else-if="globalUser.sex == 0">
+							女
+						</view>
+						<view>未选择</view>
+					</view>
 					<view class="arrow-block">
 						<image src="../../static/icons/arrow.png" class="arrow-ico"></image>
 					</view>
@@ -47,8 +55,10 @@
 		</view>
 		
 		<view class="footer-wapper">
-			<view class="footer-words">清理缓存</view>
-			<view class="footer-words" style="margin-top: 10upx;">退出登录</view>
+			<view class="footer-words" @click="clearStorage">清理缓存</view>
+			<view class="footer-words"
+			 style="margin-top: 10upx;"
+			  @click="">退出登录</view>
 		</view>
 	</view>
 </template>
@@ -58,11 +68,23 @@
 	export default {
 		data() {
 			return {
-				
+				globalUser:{}
 			}
 		},
+		onShow() {
+			var _this = this;
+			_this.globalUser = _this.getGlobalUser("globalUser");
+		},
 		methods: {
-			
+			clearStorage(){
+				uni.clearStorage();
+				uni.showToast({
+					title:"清理缓存成功",
+					mask:true,
+					duration:1500
+				})
+				
+			}
 		},
 		components:{
 			aline

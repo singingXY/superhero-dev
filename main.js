@@ -9,6 +9,15 @@ Vue.prototype.serverURL = "https://www.fastmock.site/mock/4f1424515a291bb34874c2
 
 App.mpType = 'app'
 
+Vue.prototype.getGlobalUser = function(key){
+	var userInfo = uni.getStorageSync("globalUser")
+	if(userInfo !== null && userInfo !== undefined && userInfo !== ''){
+		return userInfo;
+	}else{
+		return null;
+	}
+}
+
 const app = new Vue({
     ...App
 })
