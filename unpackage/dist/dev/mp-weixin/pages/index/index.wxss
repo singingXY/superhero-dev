@@ -1,6 +1,7 @@
 .carousel{
 	width: 100%;
 	height:440rpx;
+	background-color: #eee;
 }
 /* 热门超英 */
 .super-hot{
@@ -43,6 +44,7 @@
 .poster{
 	width: 200rpx;
 	height: 270rpx;
+	background-color: #eee;
 }
 .movie-name{
 	width: 200rpx;
@@ -74,6 +76,7 @@
 	width: 350rpx;
 	height: 220rpx;
 	margin-top: 10rpx;
+	background-color: #000;
 }
 /* 猜你喜欢 */
 .guess-u-like{display: -webkit-box;display: -webkit-flex;display: flex;-webkit-box-orient: vertical;-webkit-box-direction: normal;-webkit-flex-direction: column;flex-direction: column;}
@@ -85,7 +88,11 @@
 	-webkit-justify-content: space-between;
 	        justify-content: space-between;
 }
-.like-movie{width: 180rpx;height: 240rpx;border-radius: 3%;}
+.like-movie{
+	width: 180rpx;height: 240rpx;
+	border-radius: 3%;
+	background-color: #eee;
+}
 .movie-desc{width: 340rpx;display: -webkit-box;display: -webkit-flex;display: flex;-webkit-box-orient: vertical;-webkit-box-direction: normal;-webkit-flex-direction: column;flex-direction: column;}
 .movie-title{
 	white-space: nowrap;

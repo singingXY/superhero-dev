@@ -284,7 +284,8 @@ __webpack_require__.r(__webpack_exports__);
       method: "POST",
       success: function success(res) {
         if (res.data.status == 200) {
-          _this.hottrailerList = res.data.data;
+          console.log(res.data.data);
+          _this.hottrailerList = res.data.data.slice(0, 4);
         }
       } });
 

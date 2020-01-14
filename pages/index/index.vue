@@ -2,7 +2,7 @@
     <view class="page">
         <swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" class="carousel">
         	<swiper-item v-for="carousel in carouselList" :key="carousel.id">
-        		<image :src="carousel.image" class="carousel"></image>
+        		<image :src="carousel.image" class="carousel" lazy-load="true"></image>
         	</swiper-item>
         </swiper>
 		<!-- 轮播图 end -->
@@ -17,7 +17,7 @@
 				<view class="poster-wapper">
 					
 					<navigator :url="'../movie/movie?trailerId='+superhero.id">
-					<image :src="superhero.cover" class="poster"></image>
+					<image :src="superhero.cover" class="poster" lazy-load="true"></image>
 					<view class="movie-name">{{superhero.name}}</view>
 					<trailerStars
 					 :innerScore = "superhero.score"
@@ -36,12 +36,12 @@
 		</view>
 		<view class="hot-movie page-block">
 			<video
+			 class="hot-movie-single"
 			 :id="trailer.id"
+			 v-for="trailer in hottrailerList"
+			 :key="trailer.id"
 			 :data-playingIndex="trailer.id"
 			 @play="meIsPlaying"
-			 class="hot-movie-single"
-			 v-for="(trailer,index) in hottrailerList.slice(0, 4)"
-			 :key="trailer.id"
 			 :src="trailer.trailer" 
 			 :poster="trailer.poster"
 			 controls></video>
@@ -57,7 +57,7 @@
 		<view class="page-block guess-u-like" v-for="(guess,index) in guessULike" :key="guess.id">
 			<view class="single-like-movie">
 				<navigator :url="'../movie/movie?trailerId='+ guess.id">
-					<image :src="guess.cover" class="like-movie"></image>
+					<image :src="guess.cover" class="like-movie" lazy-load="true"></image>
 				</navigator>
 				<navigator :url="'../movie/movie?trailerId='+ guess.id">
 					<view class="movie-desc">
@@ -140,7 +140,8 @@
 				method:"POST",
 				success: (res) => {
 					if(res.data.status == 200){
-						_this.hottrailerList = res.data.data;
+					console.log(res.data.data)
+						_this.hottrailerList = res.data.data.slice(0, 4);
 					}
 				}
 			});
