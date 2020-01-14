@@ -140,7 +140,6 @@
 				method:"POST",
 				success: (res) => {
 					if(res.data.status == 200){
-					console.log(res.data.data)
 						_this.hottrailerList = res.data.data.slice(0, 4);
 					}
 				}

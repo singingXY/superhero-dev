@@ -43,13 +43,14 @@
 			})
 			uni.showNavigationBarLoading()
 			
-			//查询猜你喜欢
+			//默认展示所有列表
 			uni.request({
 				url: _this.serverURL + '/search/list?keyword=&page=&pageSize', 
 				method:"POST",
 				success: (res) => {
 					if(res.data.status == 200){
 						_this.trailerList = res.data.data.rows;
+						_this.totalPages =  res.data.data.total;
 					}
 				},
 				complete: () => {
@@ -64,8 +65,8 @@
 			var keywords = _this.keywords
 			var totalPages = _this.totalPages
 			if( page > totalPages){ return;}
-			
-			this.pagedTrailerList(keywords,page,15)
+			//当前页数小于总页数则继续请求列表
+			_this.pagedTrailerList(keywords,page,15)
 		},
 		methods: {
 			pagedTrailerList(keywords,page,pageSize){
@@ -88,7 +89,7 @@
 						if(res.data.status == 200){
 							var tempList = res.data.data.rows;
 							_this.trailerList = _this.trailerList.concat(tempList)
-							_this.totalPages =res.data.data.total //总页数
+							_this.totalPages = res.data.data.total //总页数
 							_this.page = page
 						}
 					},

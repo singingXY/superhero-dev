@@ -178,13 +178,14 @@ var _default =
 
     uni.showNavigationBarLoading();
 
-    //查询猜你喜欢
+    //默认展示所有列表
     uni.request({
       url: _this.serverURL + '/search/list?keyword=&page=&pageSize',
       method: "POST",
       success: function success(res) {
         if (res.data.status == 200) {
           _this.trailerList = res.data.data.rows;
+          _this.totalPages = res.data.data.total;
         }
       },
       complete: function complete() {
@@ -199,8 +200,8 @@ var _default =
     var keywords = _this.keywords;
     var totalPages = _this.totalPages;
     if (page > totalPages) {return;}
-
-    this.pagedTrailerList(keywords, page, 15);
+    //当前页数小于总页数则继续请求列表
+    _this.pagedTrailerList(keywords, page, 15);
   },
   methods: {
     pagedTrailerList: function pagedTrailerList(keywords, page, pageSize) {
