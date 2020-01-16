@@ -24,7 +24,7 @@
   export default {
     data() {
       return {
-        tempFace: "",
+        tempFace: ""
       }
     },
     onLoad(params) {
@@ -41,32 +41,47 @@
           success(res) {
             //获得临时路径
             var tempFilePath = res.tempFilePaths[0];
-            _this.tempFilePath = tempFilePath;
+            _this.tempFace = tempFilePath;
           }
         })
       },
       upload() {
         var _this = this;
         var globalUser = _this.getGlobalUser("globalUser")
-
-        uni.showToast({
+        uni.showLoading({
           mask: true,
           title: "上传中……"
         })
-        uni.uploadFile({
-          url: _this.serverURL + "/user/uploadFace?userId=" +
-            globalUser.id,
-          filePath: _this.tempFace,
-          name: "file",
-          header: {
-            "headerUserId": globalUser.id,
-            "headerUserToken": globalUser.userUniqueToken,
-          },
-          success(res) {},
-          complete() {
-            uni.hideLoading()
-          }
-        })
+        // 无上传接口，跳过请求，仅存入缓存中
+        // uni.uploadFile({
+        //   url: _this.serverURL + "/user/uploadFace?userId=" +
+        //     globalUser.id,
+        //   filePath: _this.tempFace,
+        //   name: "file",
+        //   header: {
+        //     "headerUserId": globalUser.id,
+        //     "headerUserToken": globalUser.userUniqueToken,
+        //   },
+        //   success(res) {
+        //     var resData = res.data
+        //     if(resData.status == 200){
+               globalUser.faceImages = _this.tempFace;
+               var userInfo = globalUser
+               uni.setStorageSync("globalUser",userInfo)
+               uni.navigateBack({
+                 delta:1
+               })
+        //     }else if(resData.status == 500 || resData.status == 502){
+        //       uni.showToast({
+        //         title:resData.msg,
+        //         duration:2000
+        //       })
+        //     }
+        //   },
+        //   complete() {
+               uni.hideLoading()
+        //   }
+        // })
 
       }
     }
