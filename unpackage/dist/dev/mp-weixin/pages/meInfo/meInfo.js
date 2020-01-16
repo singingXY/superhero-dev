@@ -133,7 +133,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var aline = function aline() {return __webpack_require__.e(/*! import() | components/aline */ "components/aline").then(__webpack_require__.bind(null, /*! ../../components/aline.vue */ 78));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var aline = function aline() {return __webpack_require__.e(/*! import() | components/aline */ "components/aline").then(__webpack_require__.bind(null, /*! ../../components/aline.vue */ 86));};var _default =
 
 
 
@@ -227,11 +227,41 @@ __webpack_require__.r(__webpack_exports__);
         url: _this.serverURL + "/user/logout?userId=" + globalUser.id,
         method: "POST",
         success: function success(res) {
-          console.log(res.data);
           if (res.data.status == 200) {
             uni.removeStorageSync("globalUser");
             uni.switchTab({
               url: "../me/me" });
+
+          }
+        } });
+
+    },
+    operator: function operator() {
+      var _this = this;
+      var globalUser = _this.getGlobalUser("globalUser");
+      uni.showActionSheet({
+        itemList: ["查看头像", "上传头像"],
+        success: function success(res) {
+          var index = res.tapIndex;
+          if (index == 0) {
+            //查看头像
+            var faceArr = [];
+            faceArr.push(globalUser.faceImages);
+            uni.previewImage({
+              urls: faceArr,
+              current: faceArr[0] });
+
+          } else if (index == 1) {
+            //上传头像
+            uni.chooseImage({
+              count: 1,
+              success: function success(res) {
+                //获得临时路径
+                var tempFilePath = res.tempFilePaths[0];
+                uni.navigateTo({
+                  url: "../meFace/meFace?tempFilePath=" + tempFilePath });
+
+              } });
 
           }
         } });
