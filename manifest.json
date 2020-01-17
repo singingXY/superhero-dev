@@ -79,5 +79,11 @@
     },
     "mp-toutiao" : {
         "usingComponents" : true
+    },
+    "h5" : {
+        "title" : "热门影片预告",
+        "router" : {
+            "mode" : "hash"
+        }
     }
 }
