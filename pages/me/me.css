@@ -18,6 +18,7 @@
 	justify-content: flex-start;
 }
 .face{
+  overflow: hidden;
 	width: 120upx;height: 120upx;
 	border-radius: 50%;
 	flex-shrink: 0;
@@ -43,11 +44,12 @@
 	margin-top: 10upx;
 }
 .set-wapper{
-	display: flex;flex-direction: row;
-	justify-content: flex-end;
+	display: flex;flex-direction:column;
+	justify-content: space-around;
+  align-items: center;
 	width: 15%;
 }
-.settings{width: 40upx;height: 40upx;}
+.settings{width: 48upx;height: 48upx;}
 
 /* 中间大LOGO */
 .body{

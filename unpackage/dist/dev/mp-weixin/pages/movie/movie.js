@@ -133,32 +133,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var trailerStars = function trailerStars() {return __webpack_require__.e(/*! import() | components/trailerStars */ "components/trailerStars").then(__webpack_require__.bind(null, /*! ../../components/trailerStars.vue */ 79));};var aline = function aline() {return __webpack_require__.e(/*! import() | components/aline */ "components/aline").then(__webpack_require__.bind(null, /*! ../../components/aline.vue */ 86));};var _default =
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var trailerStars = function trailerStars() {return __webpack_require__.e(/*! import() | components/trailerStars */ "components/trailerStars").then(__webpack_require__.bind(null, /*! ../../components/trailerStars.vue */ 79));};var aline = function aline() {return __webpack_require__.e(/*! import() | components/aline */ "components/aline").then(__webpack_require__.bind(null, /*! ../../components/aline.vue */ 96));};var _default =
 
 
 
@@ -260,13 +235,13 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
     var trailerId = params.trailerId;
     uni.setNavigationBarColor({
-      frontColor: "#ffffff",
-      backgroundColor: "#000000" });
+      frontColor: '#ffffff',
+      backgroundColor: '#000000' });
 
     //请求影片详情
     uni.request({
       url: _this.serverURL + '/search/trailer/' + trailerId,
-      method: "POST",
+      method: 'POST',
       success: function success(res) {
         if (res.data.status == 200) {
           _this.trailerInfo = res.data.data[0];
@@ -276,8 +251,9 @@ __webpack_require__.r(__webpack_exports__);
 
     //获取导演信息
     uni.request({
-      url: _this.serverURL + '/search/staff/' + trailerId + '/1',
-      method: "POST",
+      url: _this.serverURL + '/search/staff/' + trailerId +
+      '/1',
+      method: 'POST',
       success: function success(res) {
         if (res.data.status == 200) {
           _this.directorArray = res.data.data;
@@ -286,8 +262,9 @@ __webpack_require__.r(__webpack_exports__);
 
     //获取演员信息
     uni.request({
-      url: _this.serverURL + '/search/staff/' + trailerId + '/2',
-      method: "POST",
+      url: _this.serverURL + '/search/staff/' + trailerId +
+      '/2',
+      method: 'POST',
       success: function success(res) {
         if (res.data.status == 200) {
           _this.actorArray = res.data.data;
@@ -302,7 +279,7 @@ __webpack_require__.r(__webpack_exports__);
       path: '/pages/movie/movie?trailerId=' + this.trailerInfo.id };
 
   },
-  //监听原生标题栏按钮点击事件 
+  //监听原生标题栏按钮点击事件
   onNavigationBarButtonTap: function onNavigationBarButtonTap(e) {
     var _this = this;
     var index = e.index;
@@ -314,15 +291,16 @@ __webpack_require__.r(__webpack_exports__);
 
     if (index == 0) {
       uni.share({
-        provider: "weixin",
-        scene: "WXSceneSession",
+        provider: 'weixin',
+        scene: 'WXSceneSession',
         type: 0,
-        href: "http://localhost:8080/#/pages/movie/movie?trailerId=" + trailerId,
-        title: "《" + trailerName + "》",
-        summary: "《" + trailerName + "》",
+        href: 'http://localhost:8080/#/pages/movie/movie?trailerId=' +
+        trailerId,
+        title: '《' + trailerName + '》',
+        summary: '《' + trailerName + '》',
         imageUrl: cover,
         success: function success(res) {
-          console.log("success:" + JSON.stringify(res));
+          console.log('success:' + JSON.stringify(res));
         } });
 
     }
@@ -341,7 +319,9 @@ __webpack_require__.r(__webpack_exports__);
       var staffIndex = e.currentTarget.dataset.staffindex;
       //拼接导演和演员数组
       var newStaffArray = [];
-      newStaffArray = newStaffArray.concat(_this.directorArray).concat(_this.actorArray);
+      newStaffArray = newStaffArray.
+      concat(_this.directorArray).
+      concat(_this.actorArray);
       var urls = [];
       for (var i = 0; i < newStaffArray.length; i++) {
         urls.push(newStaffArray[i].photo);
@@ -349,7 +329,6 @@ __webpack_require__.r(__webpack_exports__);
       uni.previewImage({
         current: urls[staffIndex],
         urls: urls });
-
 
     } },
 

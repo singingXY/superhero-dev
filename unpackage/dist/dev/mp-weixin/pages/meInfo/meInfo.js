@@ -133,14 +133,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var aline = function aline() {return __webpack_require__.e(/*! import() | components/aline */ "components/aline").then(__webpack_require__.bind(null, /*! ../../components/aline.vue */ 86));};var _default =
-
-
-
-
-
-
-
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var aline = function aline() {return __webpack_require__.e(/*! import() | components/aline */ "components/aline").then(__webpack_require__.bind(null, /*! ../../components/aline.vue */ 96));};var _default =
 
 
 
@@ -203,34 +196,35 @@ __webpack_require__.r(__webpack_exports__);
 {
   data: function data() {
     return {
-      globalUser: {} };
+      globalUser: {},
+      imgurl: 'http://dummyimage.com/100x100/f2a379&text=faceImages' };
 
   },
   onShow: function onShow() {
     var _this = this;
-    _this.globalUser = _this.getGlobalUser("globalUser");
+    _this.globalUser = _this.getGlobalUser('globalUser');
   },
   methods: {
     clearStorage: function clearStorage() {
       uni.clearStorage();
       uni.showToast({
-        title: "清理缓存成功",
+        title: '清理缓存成功',
         mask: true,
         duration: 1500 });
-
 
     },
     logout: function logout() {
       var _this = this;
-      var globalUser = _this.getGlobalUser("globalUser");
+      var globalUser = _this.getGlobalUser('globalUser');
       uni.request({
-        url: _this.serverURL + "/user/logout?userId=" + globalUser.id,
-        method: "POST",
+        url: _this.serverURL + '/user/logout?userId=' +
+        globalUser.id,
+        method: 'POST',
         success: function success(res) {
           if (res.data.status == 200) {
-            uni.removeStorageSync("globalUser");
+            uni.removeStorageSync('globalUser');
             uni.switchTab({
-              url: "../me/me" });
+              url: '../me/me' });
 
           }
         } });
@@ -238,9 +232,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     operator: function operator() {
       var _this = this;
-      var globalUser = _this.getGlobalUser("globalUser");
+      var globalUser = _this.getGlobalUser('globalUser');
       uni.showActionSheet({
-        itemList: ["查看头像", "上传头像"],
+        itemList: ['查看头像', '上传头像'],
         success: function success(res) {
           var index = res.tapIndex;
           if (index == 0) {
@@ -259,7 +253,8 @@ __webpack_require__.r(__webpack_exports__);
                 //获得临时路径
                 var tempFilePath = res.tempFilePaths[0];
                 uni.navigateTo({
-                  url: "../meFace/meFace?tempFilePath=" + tempFilePath });
+                  url: '../meFace/meFace?tempFilePath=' +
+                  tempFilePath });
 
               } });
 

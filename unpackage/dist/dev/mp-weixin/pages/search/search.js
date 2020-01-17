@@ -151,14 +151,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 var _default =
 {
   data: function data() {
@@ -180,7 +172,8 @@ var _default =
 
     //默认展示所有列表
     uni.request({
-      url: _this.serverURL + '/search/list?keyword=&page=&pageSize',
+      url: _this.serverURL +
+      '/search/list?keyword=&page=&pageSize',
       method: "POST",
       success: function success(res) {
         if (res.data.status == 200) {
@@ -199,7 +192,9 @@ var _default =
     var page = _this.page + 1;
     var keywords = _this.keywords;
     var totalPages = _this.totalPages;
-    if (page > totalPages) {return;}
+    if (page > totalPages) {
+      return;
+    }
     //当前页数小于总页数则继续请求列表
     _this.pagedTrailerList(keywords, page, 15);
   },
@@ -223,7 +218,8 @@ var _default =
         success: function success(res) {
           if (res.data.status == 200) {
             var tempList = res.data.data.rows;
-            _this.trailerList = _this.trailerList.concat(tempList);
+            _this.trailerList = _this.trailerList.concat(
+            tempList);
             _this.totalPages = res.data.data.total; //总页数
             _this.page = page;
           }

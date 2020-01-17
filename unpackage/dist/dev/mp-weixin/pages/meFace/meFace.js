@@ -155,9 +155,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 var _default =
 {
   data: function data() {
@@ -179,8 +176,47 @@ var _default =
         success: function success(res) {
           //获得临时路径
           var tempFilePath = res.tempFilePaths[0];
-          _this.tempFilePath = tempFilePath;
+          _this.tempFace = tempFilePath;
         } });
+
+    },
+    upload: function upload() {
+      var _this = this;
+      var globalUser = _this.getGlobalUser("globalUser");
+      uni.showLoading({
+        mask: true,
+        title: "上传中……" });
+
+      // 无上传接口，跳过请求，仅存入缓存中
+      // uni.uploadFile({
+      //   url: _this.serverURL + "/user/uploadFace?userId=" +
+      //     globalUser.id,
+      //   filePath: _this.tempFace,
+      //   name: "file",
+      //   header: {
+      //     "headerUserId": globalUser.id,
+      //     "headerUserToken": globalUser.userUniqueToken,
+      //   },
+      //   success(res) {
+      //     var resData = res.data
+      //     if(resData.status == 200){
+      globalUser.faceImages = _this.tempFace;
+      var userInfo = globalUser;
+      uni.setStorageSync("globalUser", userInfo);
+      uni.navigateBack({
+        delta: 1 });
+
+      //     }else if(resData.status == 500 || resData.status == 502){
+      //       uni.showToast({
+      //         title:resData.msg,
+      //         duration:2000
+      //       })
+      //     }
+      //   },
+      //   complete() {
+      uni.hideLoading();
+      //   }
+      // })
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

@@ -133,40 +133,46 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var cropper = function cropper() {return Promise.all(/*! import() | components/cropper/cropper */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/cropper/cropper")]).then(__webpack_require__.bind(null, /*! ../../components/cropper/cropper.vue */ 86));};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
   data: function data() {
     return {
       userIsLogin: false,
-      userInfo: {} };
+      userInfo: {},
+      faceImages: '' };
 
   },
   onShow: function onShow() {
@@ -183,13 +189,37 @@ var _default =
     if (userInfo !== null) {
       _this.userIsLogin = true;
       _this.userInfo = userInfo;
+      _this.faceImages = _this.userInfo.faceImages;
     } else {
       _this.userIsLogin = false;
       _this.userInfo = {};
     }
 
   },
-  methods: {} };exports.default = _default;
+  methods: {
+    //上传返回图片
+    myUpload: function myUpload(rsp) {
+      var _this = this;
+      var userInfo = _this.getGlobalUser("globalUser");
+      _this.faceImages = rsp.path;
+      userInfo.faceImages = rsp.path;
+      uni.setStorageSync("globalUser", userInfo);
+      // rsp.avatar.imgSrc = rsp.path; //更新头像方式二
+    },
+    lookFace: function lookFace() {
+      var globalUser = this.getGlobalUser('globalUser');
+      //查看头像
+      var faceArr = [];
+      faceArr.push(globalUser.faceImages);
+      uni.previewImage({
+        urls: faceArr,
+        current: faceArr[0] });
+
+    } },
+
+  components: {
+    cropper: cropper } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

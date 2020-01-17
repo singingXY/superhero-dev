@@ -25,6 +25,7 @@
 	        justify-content: flex-start;
 }
 .face{
+  overflow: hidden;
 	width: 120rpx;height: 120rpx;
 	border-radius: 50%;
 	-webkit-flex-shrink: 0;
@@ -58,13 +59,15 @@
 .set-wapper{
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: flex;-webkit-box-orient: horizontal;-webkit-box-direction: normal;-webkit-flex-direction: row;flex-direction: row;
-	-webkit-box-pack: end;
-	-webkit-justify-content: flex-end;
-	        justify-content: flex-end;
+	display: flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;flex-direction:column;
+	-webkit-justify-content: space-around;
+	        justify-content: space-around;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
 	width: 15%;
 }
-.settings{width: 40rpx;height: 40rpx;}
+.settings{width: 48rpx;height: 48rpx;}
 
 /* 中间大LOGO */
 .body{

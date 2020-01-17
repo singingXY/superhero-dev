@@ -2,7 +2,11 @@
 	<view class="page page-fill">
 		<view class="header">
 			<view v-if="userIsLogin">
-				<image :src="userInfo.faceImages" class="face"></image>
+				<image :src="userInfo.faceImages" class="face" @click="lookFace"></image>
+        <!-- <cropper class="face" selWidth="660rpx" selHeight="660rpx"
+          @upload="myUpload" :avatarSrc="faceImages"
+          avatarStyle="width:120rpx;height:120rpx;border-radius:50%;">
+        </cropper> -->
 			</view>
 			<view v-else>
 				<image src="../../static/icons/user.png" class="face"></image>
@@ -27,11 +31,13 @@
 </template>
 
 <script>
+  import cropper from "../../components/cropper/cropper.vue";
 	export default {
 		data() {
 			return {
 				userIsLogin:false,
-				userInfo:{}
+				userInfo:{},
+        faceImages:''
 			}
 		},
 		onShow() {
@@ -48,6 +54,7 @@
 			if(userInfo !== null ){
 				_this.userIsLogin = true
 				_this.userInfo = userInfo
+        _this.faceImages = _this.userInfo.faceImages
 			}else{
 				_this.userIsLogin = false
 				_this.userInfo = {}
@@ -55,8 +62,29 @@
 			
 		},
 		methods: {
-			
-		}
+			//上传返回图片
+			myUpload(rsp) {
+        var _this = this;
+        var userInfo = _this.getGlobalUser("globalUser")
+			  _this.faceImages = rsp.path;
+        userInfo.faceImages = rsp.path;
+        uni.setStorageSync("globalUser",userInfo)
+			  // rsp.avatar.imgSrc = rsp.path; //更新头像方式二
+			},
+      lookFace(){
+          var globalUser = this.getGlobalUser('globalUser');
+          //查看头像
+          var faceArr = [];
+          faceArr.push(globalUser.faceImages);
+          uni.previewImage({
+            urls: faceArr,
+            current: faceArr[0]
+          });
+      }
+		},
+    components: {
+      cropper
+    }
 	}
 </script>
 
