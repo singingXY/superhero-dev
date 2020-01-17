@@ -7,7 +7,10 @@
     "pages/cover/cover",
     "pages/registLogin/registLogin",
     "pages/meInfo/meInfo",
-    "pages/meFace/meFace"
+    "pages/meFace/meFace",
+    "pages/meNickname/meNickname",
+    "pages/meBirthday/meBirthday",
+    "pages/sex/sex"
   ],
   "subPackages": [],
   "window": {

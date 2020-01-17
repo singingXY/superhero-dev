@@ -133,7 +133,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var aline = function aline() {return __webpack_require__.e(/*! import() | components/aline */ "components/aline").then(__webpack_require__.bind(null, /*! ../../components/aline.vue */ 96));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var aline = function aline() {return __webpack_require__.e(/*! import() | components/aline */ "components/aline").then(__webpack_require__.bind(null, /*! ../../components/aline.vue */ 120));};var _default =
 
 
 
@@ -205,6 +205,21 @@ __webpack_require__.r(__webpack_exports__);
     _this.globalUser = _this.getGlobalUser('globalUser');
   },
   methods: {
+    modifyNickname: function modifyNickname() {
+      uni.navigateTo({
+        url: "../meNickname/meNickname" });
+
+    },
+    modifyBirthday: function modifyBirthday() {
+      uni.navigateTo({
+        url: "../meBirthday/meBirthday" });
+
+    },
+    modifySex: function modifySex() {
+      uni.navigateTo({
+        url: "../sex/sex" });
+
+    },
     clearStorage: function clearStorage() {
       uni.clearStorage();
       uni.showToast({
