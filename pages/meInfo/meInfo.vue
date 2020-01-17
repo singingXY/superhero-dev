@@ -13,7 +13,7 @@
       </view>
       <aline></aline>
       <!-- 用户名 -->
-      <view class="item-wapper">
+      <view class="item-wapper" @click="modifyNickname">
         <view class="info-words">昵称</view>
         <view class="right-wapper">
           <view class="gray-fields">{{ globalUser.nickname }}</view>
@@ -24,7 +24,7 @@
       </view>
       <aline></aline>
       <!-- 生日 -->
-      <view class="item-wapper">
+      <view class="item-wapper" @click="modifyBirthday">
         <view class="info-words">生日</view>
         <view class="right-wapper">
           <view class="gray-fields">{{ globalUser.birthday }}</view>
@@ -35,13 +35,13 @@
       </view>
       <aline></aline>
       <!-- 性别 -->
-      <view class="item-wapper">
+      <view class="item-wapper" @click="modifySex">
         <view class="info-words">性别</view>
         <view class="right-wapper">
           <view class="gray-fields">
             <view v-if="globalUser.sex == 1">男</view>
             <view v-else-if="globalUser.sex == 0">女</view>
-            <view>未选择</view>
+            <view v-else>未选择</view>
           </view>
           <view class="arrow-block">
             <image src="../../static/icons/arrow.png" class="arrow-ico"></image>
@@ -70,6 +70,21 @@
       _this.globalUser = _this.getGlobalUser('globalUser');
     },
     methods: {
+      modifyNickname(){
+        uni.navigateTo({
+          url:"../meNickname/meNickname"
+        })
+      },
+      modifyBirthday(){
+        uni.navigateTo({
+          url:"../meBirthday/meBirthday"
+        })
+      },
+      modifySex(){
+        uni.navigateTo({
+          url:"../sex/sex"
+        })
+      },
       clearStorage() {
         uni.clearStorage();
         uni.showToast({
