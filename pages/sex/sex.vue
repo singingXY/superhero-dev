@@ -10,7 +10,6 @@
           <label class="radio-singel">
             <radio value="0" :checked="sex == 0"/><text>女</text>
           </label>
-          </label>
         </radio-group>
       </view>
       <button type="primary" form-type="submit" class="submitBtn">提交</button>
