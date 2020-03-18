@@ -9,14 +9,22 @@
     </view>
     <view class="movie-list page-block">
       <view class="movie-wapper" v-for="trailer in trailerList" :key="trailer.id">
+        <!-- #ifndef H5 -->
         <image :src="trailer.cover" :data-trailerId="trailer.id"
           @click="showTrailer" class="poster"></image>
+        <!-- #endif -->
+        <!-- #ifdef H5 -->
+          <view @click="showTrailer"  :data-trailerId="trailer.id">
+            <pictureBox class="poster" :backgroundColor="trailer.color" :text="trailer.name"></pictureBox>
+          </view>
+        <!-- #endif -->
       </view>
     </view>
   </view>
 </template>
 
 <script>
+	import pictureBox from "../../components/pictureBox.vue"
   export default {
     data() {
       return {
@@ -109,7 +117,10 @@
           url: "../movie/movie?trailerId=" + trailerId
         })
       }
-    }
+    },
+		components:{
+			pictureBox
+		}
   }
 </script>
 

@@ -9,6 +9,7 @@
 }
 .cover{
 	width: 280upx;height: 380upx;
+  font-size:26px ;
 }
 .movie-desc{
 	display: flex;

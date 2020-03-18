@@ -7,7 +7,12 @@
     <!-- 视频播放 end-->
     <view class="movie-info">
       <navigator :url="'../cover/cover?cover=' + trailerInfo.cover">
+        <!-- #ifndef H5 -->
         <image :src="trailerInfo.cover" class="cover"></image>
+        <!-- #endif -->
+        <!-- #ifdef H5 -->
+        <pictureBox class="cover" :backgroundColor="trailerInfo.color" :text="trailerInfo.name"></pictureBox>
+        <!-- #endif -->
       </navigator>
 
       <view class="movie-desc">
@@ -43,8 +48,7 @@
       <scroll-view scroll-x="true" class="scroll-list">
         <view class="actor-wapper" v-for="(director, dIndex) in directorArray"
           :key="director.staffId">
-          <image :src="director.photo" class="single-actor" mode="aspectFill"
-            @click="lookStaffs" :data-staffIndex="dIndex"></image>
+          <image :src="director.photo" class="single-actor"></image>
           <view class="actor-name">{{ director.name }}</view>
           <view class="actor-role">{{ director.actName }}</view>
         </view>
@@ -73,6 +77,7 @@
 <script>
   import trailerStars from '../../components/trailerStars.vue';
   import aline from '../../components/aline.vue';
+	import pictureBox from "../../components/pictureBox.vue"
   export default {
     data() {
       return {
@@ -199,7 +204,8 @@
     },
     components: {
       trailerStars,
-      aline
+      aline,
+      pictureBox
     }
   };
 </script>

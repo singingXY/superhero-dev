@@ -2,7 +2,12 @@
     <view class="page">
         <swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" class="carousel">
         	<swiper-item v-for="carousel in carouselList" :key="carousel.id">
+            <!-- #ifndef H5 -->
         		<image :src="carousel.image" class="carousel" lazy-load="true"></image>
+            <!-- #endif -->
+            <!-- #ifdef H5 -->
+            <pictureBox class="carousel" :backgroundColor="carousel.color" text="Movie poster"></pictureBox>
+            <!-- #endif -->
         	</swiper-item>
         </swiper>
 		<!-- 轮播图 end -->
@@ -17,7 +22,12 @@
 				<view class="poster-wapper">
 					
 					<navigator :url="'../movie/movie?trailerId='+superhero.id">
+          <!-- #ifndef H5 -->
 					<image :src="superhero.cover" class="poster" lazy-load="true"></image>
+          <!-- #endif -->
+          <!-- #ifdef H5 -->
+          <pictureBox  class="poster" :backgroundColor="superhero.color" :text="superhero.name"></pictureBox>
+          <!-- #endif -->
 					<view class="movie-name">{{superhero.name}}</view>
 					<trailerStars
 					 :innerScore = "superhero.score"
@@ -57,7 +67,12 @@
 		<view class="page-block guess-u-like" v-for="(guess,index) in guessULike" :key="guess.id">
 			<view class="single-like-movie">
 				<navigator :url="'../movie/movie?trailerId='+ guess.id">
+          <!-- #ifndef H5 -->
 					<image :src="guess.cover" class="like-movie" lazy-load="true"></image>
+          <!-- #endif -->
+          <!-- #ifdef H5 -->
+          <pictureBox  class="like-movie" :backgroundColor="guess.color" :text="guess.name"></pictureBox>
+          <!-- #endif -->
 				</navigator>
 				<navigator :url="'../movie/movie?trailerId='+ guess.id">
 					<view class="movie-desc">
@@ -85,6 +100,7 @@
 
 <script>
 	import trailerStars from "../../components/trailerStars.vue"
+	import pictureBox from "../../components/pictureBox.vue"
     export default {
         data() {
             return {
@@ -208,7 +224,7 @@
 			}
         },
 		components:{
-			trailerStars
+			trailerStars,pictureBox
 		}
     }
 </script>

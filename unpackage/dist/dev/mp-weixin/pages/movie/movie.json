@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "trailer-stars": "/components/trailerStars",
-    "aline": "/components/aline"
+    "aline": "/components/aline",
+    "picture-box": "/components/pictureBox"
   }
 }

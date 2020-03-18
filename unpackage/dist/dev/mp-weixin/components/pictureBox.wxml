@@ -1,0 +1,1 @@
+<view class="picture-box" style="{{'background-color:'+(backgroundColor)+';'}}"><view class="picture-box-text">{{text}}</view></view>

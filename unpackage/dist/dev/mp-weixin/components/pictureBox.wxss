@@ -1,0 +1,14 @@
+
+.picture-box{
+    position:relative;
+}
+.picture-box-text{
+  width: 100%;
+  position:absolute;
+  top:50%;
+  -webkit-transform:translateY(-50%);
+          transform:translateY(-50%);
+  white-space: normal;
+  text-align: center;
+}
+

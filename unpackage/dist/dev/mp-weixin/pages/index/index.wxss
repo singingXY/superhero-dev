@@ -48,7 +48,7 @@
 }
 .movie-name{
 	width: 200rpx;
-	margin-top: 10uox;
+	margin-top: 10rpx;
 	font-size: 14px;
 	font-weight: bold;
 	/* 省略 */

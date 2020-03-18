@@ -1,6 +1,7 @@
 {
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "trailer-stars": "/components/trailerStars"
+    "trailer-stars": "/components/trailerStars",
+    "picture-box": "/components/pictureBox"
   }
 }

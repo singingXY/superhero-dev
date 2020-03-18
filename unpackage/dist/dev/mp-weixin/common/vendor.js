@@ -1534,19 +1534,19 @@ uni$1;exports.default = _default;
 
 /***/ }),
 
-/***/ 115:
+/***/ 122:
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
   \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 116);
+module.exports = __webpack_require__(/*! regenerator-runtime */ 123);
 
 
 /***/ }),
 
-/***/ 116:
+/***/ 123:
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -1577,7 +1577,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 117);
+module.exports = __webpack_require__(/*! ./runtime */ 124);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -1594,7 +1594,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 117:
+/***/ 124:
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/
@@ -9427,7 +9427,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "enablePullDownRefresh": true }, "pages/search/search": { "navigationBarTitleText": "搜索预告片" }, "pages/me/me": { "navigationBarTextStyle": "white", "navigationBarTitleText": "我的", "navigationBarBackgroundColor": "#ffd655" }, "pages/movie/movie": {}, "pages/cover/cover": {}, "pages/registLogin/registLogin": {}, "pages/meInfo/meInfo": { "navigationBarTextStyle": "white", "navigationBarTitleText": "我的", "navigationBarBackgroundColor": "#ffd655" }, "pages/meFace/meFace": { "navigationBarTextStyle": "white", "navigationBarTitleText": "头像上传", "navigationBarBackgroundColor": "#000000" }, "pages/meNickname/meNickname": { "navigationBarTextStyle": "white", "navigationBarTitleText": "修改昵称", "navigationBarBackgroundColor": "#ffd655" }, "pages/meBirthday/meBirthday": { "navigationBarTextStyle": "white", "navigationBarTitleText": "修改生日", "navigationBarBackgroundColor": "#ffd655" }, "pages/sex/sex": { "navigationBarTextStyle": "white", "navigationBarTitleText": "修改性别", "navigationBarBackgroundColor": "#ffd655" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "影片预告", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "enablePullDownRefresh": true, "usingComponents": { "trailer-stars": "/components/trailerStars", "picture-box": "/components/pictureBox" }, "usingAutoImportComponents": {} }, "pages/search/search": { "navigationBarTitleText": "搜索预告片", "usingComponents": { "picture-box": "/components/pictureBox" }, "usingAutoImportComponents": {} }, "pages/me/me": { "navigationBarTextStyle": "white", "navigationBarTitleText": "我的", "navigationBarBackgroundColor": "#ffd655", "usingComponents": { "cropper": "/components/cropper/cropper" }, "usingAutoImportComponents": {} }, "pages/movie/movie": { "usingComponents": { "trailer-stars": "/components/trailerStars", "aline": "/components/aline", "picture-box": "/components/pictureBox" }, "usingAutoImportComponents": {} }, "pages/cover/cover": { "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/registLogin/registLogin": { "usingComponents": { "aline": "/components/aline" }, "usingAutoImportComponents": {} }, "pages/meInfo/meInfo": { "navigationBarTextStyle": "white", "navigationBarTitleText": "我的", "navigationBarBackgroundColor": "#ffd655", "usingComponents": { "aline": "/components/aline" }, "usingAutoImportComponents": {} }, "pages/meFace/meFace": { "navigationBarTextStyle": "white", "navigationBarTitleText": "头像上传", "navigationBarBackgroundColor": "#000000", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/meNickname/meNickname": { "navigationBarTextStyle": "white", "navigationBarTitleText": "修改昵称", "navigationBarBackgroundColor": "#ffd655", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/meBirthday/meBirthday": { "navigationBarTextStyle": "white", "navigationBarTitleText": "修改生日", "navigationBarBackgroundColor": "#ffd655", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/sex/sex": { "navigationBarTextStyle": "white", "navigationBarTitleText": "修改性别", "navigationBarBackgroundColor": "#ffd655", "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "影片预告", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 
