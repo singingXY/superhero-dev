@@ -1,8 +1,0 @@
-{
-  "navigationBarTextStyle": "white",
-  "navigationBarTitleText": "我的",
-  "navigationBarBackgroundColor": "#ffd655",
-  "usingComponents": {
-    "aline": "/components/aline"
-  }
-}
